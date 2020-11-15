@@ -49,7 +49,7 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
  * Пример главной функции
  */
 fun main() {
-    val result = sqr(7);
+    val result = sqr(7)
     println("7 * 7 = $result")
 }
 
@@ -125,8 +125,8 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
 fun numberRevert(number: Int): Int {
-    val hundreds: Int = number / 100;
+    val hundreds: Int = number / 100
     val dozens: Int = (number - (hundreds * 100)) / 10
-    val units: Int = number - (hundreds * 100 + dozens * 10);
-    return units * 100 + dozens * 10 + hundreds;
+    val units: Int = number - (hundreds * 100 + dozens * 10)
+    return units * 100 + dozens * 10 + hundreds
 }
