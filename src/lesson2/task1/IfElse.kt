@@ -141,9 +141,6 @@ fun rookOrBishopThreatens(
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    val min: Int
-    val max: Int
-    val avr: Int
     return if ((a + b <= c) || (a + c <= b) || (b + c <= a)) -1
     else {
         if (a > b && a > c) {

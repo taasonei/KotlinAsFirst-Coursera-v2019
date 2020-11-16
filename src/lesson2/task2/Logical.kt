@@ -3,6 +3,8 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import kotlin.math.abs
+import kotlin.math.sqrt
 
 /**
  * Пример
@@ -33,7 +35,8 @@ fun isNumberHappy(number: Int): Boolean {
  * Определить, угрожают ли они друг другу. Вернуть true, если угрожают.
  * Считать, что ферзи не могут загораживать друг друга.
  */
-fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
+fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean =
+    (x1 == x2) || (y1 == y2) || (abs(x1 - x2) == abs(y1 - y2))
 
 
 /**
@@ -43,10 +46,10 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
 fun daysInMonth(month: Int, year: Int): Int {
-    if (month % 2 != 0) return 31
-    else if (month != 2) return 30
-    else if (month == 2) return 29
-    else return 28
+    return if (month % 2 != 0 || month == 8) 31
+    else if (month != 2) 30
+    else if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) 29
+    else 28
 }
 
 /**
@@ -59,7 +62,7 @@ fun daysInMonth(month: Int, year: Int): Int {
 fun circleInside(
     x1: Double, y1: Double, r1: Double,
     x2: Double, y2: Double, r2: Double
-): Boolean = TODO()
+): Boolean = (sqrt(sqr(x2 - x1) + sqr(y2 - y1)) <= r2 - r1)
 
 /**
  * Средняя
@@ -70,4 +73,44 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    return when {
+        r >= a -> {
+            when {
+                s >= b || s >= c -> true
+                s >= a -> {
+                    when {
+                        r >= b || r >= c -> true
+                        else -> false
+                    }
+                }
+                else -> false
+            }
+        }
+        r >= b -> {
+            when {
+                s >= a || s >= c -> true
+                s >= b -> {
+                    when {
+                        r >= a || r >= c -> true
+                        else -> false
+                    }
+                }
+                else -> false
+            }
+        }
+        r >= c -> {
+            when {
+                s >= a || s >= b -> true
+                s >= c -> {
+                    when {
+                        r >= a || r >= b -> true
+                        else -> false
+                    }
+                }
+                else -> false
+            }
+        }
+        else -> false
+    }
+}
