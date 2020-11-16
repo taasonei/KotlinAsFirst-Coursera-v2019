@@ -152,7 +152,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
         } else if (b > a && b > c) {
             return when {
                 sqr(b) == sqr(a) + sqr(c) -> 1
-                sqr(b) < sqr(a) + sqr(c) -> 2
+                sqr(b) < sqr(a) + sqr(c) -> 0
                 else -> 2
             }
         } else
@@ -189,5 +189,13 @@ fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
                 else -> b - c
             }
         }
+    } else if (c == d) {
+        if (c > a) {
+            when {
+                c <= b -> 0
+                else -> -1
+            }
+        } else if (c == a) 0
+        else -1
     } else if (a == b && a == c && c == d) 0 else -1
 }
